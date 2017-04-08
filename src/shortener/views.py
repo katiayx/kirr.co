@@ -47,7 +47,7 @@ def kirr_redirect_view(request, shortcode=None, *args, **kwargs): #function base
 class URLRedirectView(View): #class based views, must specify method
     def get(self, request, shortcode=None, *args, **kwargs):
         qs = KirrURL.objects.filter(shortcode__iexact=shortcode)
-        if qs.count != 1 and not qs.exists():
+        if qs.count() != 1 and not qs.exists():
             raise Http404
         obj = qs.first()
         # obj = get_object_or_404(KirrURL, shortcode=shortcode)
